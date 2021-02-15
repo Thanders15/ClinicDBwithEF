@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PrzychodniaDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Lekarze">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imie" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nazwisko" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="StopienNaukowy" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Specjalizacja" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pacjenci">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imie" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nazwisko" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Pesel" Type="bigint" Nullable="false" />
+          <Property Name="Adres" Type="varchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Recepty">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pacjent_ID" Type="int" Nullable="false" />
+          <Property Name="NazwaRecepty" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumerRecepty" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Wizyty">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Lekarz_ID" Type="int" Nullable="false" />
+          <Property Name="Pacjent_ID" Type="int" Nullable="false" />
+          <Property Name="DataWizyty" Type="datetime" Nullable="false" />
+          <Property Name="NumerPokoju" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Recepty_Pacjenci">
+          <End Role="Pacjenci" Type="Self.Pacjenci" Multiplicity="1" />
+          <End Role="Recepty" Type="Self.Recepty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacjenci">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Recepty">
+              <PropertyRef Name="Pacjent_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wizyty_Lekarze">
+          <End Role="Lekarze" Type="Self.Lekarze" Multiplicity="1" />
+          <End Role="Wizyty" Type="Self.Wizyty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lekarze">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Wizyty">
+              <PropertyRef Name="Lekarz_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wizyty_Pacjenci">
+          <End Role="Pacjenci" Type="Self.Pacjenci" Multiplicity="1" />
+          <End Role="Wizyty" Type="Self.Wizyty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacjenci">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Wizyty">
+              <PropertyRef Name="Pacjent_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PrzychodniaDBModelStoreContainer">
+          <EntitySet Name="Lekarze" EntityType="Self.Lekarze" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pacjenci" EntityType="Self.Pacjenci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recepty" EntityType="Self.Recepty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Wizyty" EntityType="Self.Wizyty" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Recepty_Pacjenci" Association="Self.FK_Recepty_Pacjenci">
+            <End Role="Pacjenci" EntitySet="Pacjenci" />
+            <End Role="Recepty" EntitySet="Recepty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wizyty_Lekarze" Association="Self.FK_Wizyty_Lekarze">
+            <End Role="Lekarze" EntitySet="Lekarze" />
+            <End Role="Wizyty" EntitySet="Wizyty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wizyty_Pacjenci" Association="Self.FK_Wizyty_Pacjenci">
+            <End Role="Pacjenci" EntitySet="Pacjenci" />
+            <End Role="Wizyty" EntitySet="Wizyty" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PrzychodniaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Lekarze">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imie" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StopienNaukowy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Specjalizacja" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Wizyty" Relationship="Self.FK_Wizyty_Lekarze" FromRole="Lekarze" ToRole="Wizyty" />
+        </EntityType>
+        <EntityType Name="Pacjenci">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imie" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pesel" Type="Int64" Nullable="false" />
+          <Property Name="Adres" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Recepty" Relationship="Self.FK_Recepty_Pacjenci" FromRole="Pacjenci" ToRole="Recepty" />
+          <NavigationProperty Name="Wizyty" Relationship="Self.FK_Wizyty_Pacjenci" FromRole="Pacjenci" ToRole="Wizyty" />
+        </EntityType>
+        <EntityType Name="Recepty">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pacjent_ID" Type="Int32" Nullable="false" />
+          <Property Name="NazwaRecepty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NumerRecepty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pacjenci" Relationship="Self.FK_Recepty_Pacjenci" FromRole="Recepty" ToRole="Pacjenci" />
+        </EntityType>
+        <EntityType Name="Wizyty">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Lekarz_ID" Type="Int32" Nullable="false" />
+          <Property Name="Pacjent_ID" Type="Int32" Nullable="false" />
+          <Property Name="DataWizyty" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NumerPokoju" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Lekarze" Relationship="Self.FK_Wizyty_Lekarze" FromRole="Wizyty" ToRole="Lekarze" />
+          <NavigationProperty Name="Pacjenci" Relationship="Self.FK_Wizyty_Pacjenci" FromRole="Wizyty" ToRole="Pacjenci" />
+        </EntityType>
+        <Association Name="FK_Wizyty_Lekarze">
+          <End Role="Lekarze" Type="Self.Lekarze" Multiplicity="1" />
+          <End Role="Wizyty" Type="Self.Wizyty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lekarze">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Wizyty">
+              <PropertyRef Name="Lekarz_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recepty_Pacjenci">
+          <End Role="Pacjenci" Type="Self.Pacjenci" Multiplicity="1" />
+          <End Role="Recepty" Type="Self.Recepty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacjenci">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Recepty">
+              <PropertyRef Name="Pacjent_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wizyty_Pacjenci">
+          <End Role="Pacjenci" Type="Self.Pacjenci" Multiplicity="1" />
+          <End Role="Wizyty" Type="Self.Wizyty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pacjenci">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Wizyty">
+              <PropertyRef Name="Pacjent_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PrzychodniaDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Lekarze" EntityType="Self.Lekarze" />
+          <EntitySet Name="Pacjenci" EntityType="Self.Pacjenci" />
+          <EntitySet Name="Recepty" EntityType="Self.Recepty" />
+          <EntitySet Name="Wizyty" EntityType="Self.Wizyty" />
+          <AssociationSet Name="FK_Wizyty_Lekarze" Association="Self.FK_Wizyty_Lekarze">
+            <End Role="Lekarze" EntitySet="Lekarze" />
+            <End Role="Wizyty" EntitySet="Wizyty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recepty_Pacjenci" Association="Self.FK_Recepty_Pacjenci">
+            <End Role="Pacjenci" EntitySet="Pacjenci" />
+            <End Role="Recepty" EntitySet="Recepty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wizyty_Pacjenci" Association="Self.FK_Wizyty_Pacjenci">
+            <End Role="Pacjenci" EntitySet="Pacjenci" />
+            <End Role="Wizyty" EntitySet="Wizyty" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PrzychodniaDBModelStoreContainer" CdmEntityContainer="PrzychodniaDBEntities">
+          <EntitySetMapping Name="Lekarze">
+            <EntityTypeMapping TypeName="PrzychodniaDBModel.Lekarze">
+              <MappingFragment StoreEntitySet="Lekarze">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="StopienNaukowy" ColumnName="StopienNaukowy" />
+                <ScalarProperty Name="Specjalizacja" ColumnName="Specjalizacja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pacjenci">
+            <EntityTypeMapping TypeName="PrzychodniaDBModel.Pacjenci">
+              <MappingFragment StoreEntitySet="Pacjenci">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="Pesel" ColumnName="Pesel" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recepty">
+            <EntityTypeMapping TypeName="PrzychodniaDBModel.Recepty">
+              <MappingFragment StoreEntitySet="Recepty">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Pacjent_ID" ColumnName="Pacjent_ID" />
+                <ScalarProperty Name="NazwaRecepty" ColumnName="NazwaRecepty" />
+                <ScalarProperty Name="NumerRecepty" ColumnName="NumerRecepty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wizyty">
+            <EntityTypeMapping TypeName="PrzychodniaDBModel.Wizyty">
+              <MappingFragment StoreEntitySet="Wizyty">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Lekarz_ID" ColumnName="Lekarz_ID" />
+                <ScalarProperty Name="Pacjent_ID" ColumnName="Pacjent_ID" />
+                <ScalarProperty Name="DataWizyty" ColumnName="DataWizyty" />
+                <ScalarProperty Name="NumerPokoju" ColumnName="NumerPokoju" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

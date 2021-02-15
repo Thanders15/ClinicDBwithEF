@@ -23,6 +23,7 @@ namespace Przychodnia
         public MainWindow()
         {
             InitializeComponent();
+            PrzychodniaDBEntities db = new PrzychodniaDBEntities();       
         }
     }
 }
