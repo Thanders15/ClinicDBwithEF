@@ -29,3 +29,5 @@ C:\Users\Adam\Desktop\ProjektOdZera\ClinicDBwithEF\Przychodnia\obj\Debug\WizytyW
 C:\Users\Adam\Desktop\ProjektOdZera\ClinicDBwithEF\Przychodnia\obj\Debug\PacjenciWindow.baml
 C:\Users\Adam\Desktop\ProjektOdZera\ClinicDBwithEF\Przychodnia\obj\Debug\ReceptyWindow.baml
 C:\Users\Adam\Desktop\ProjektOdZera\ClinicDBwithEF\Przychodnia\obj\Debug\WizytyWindow.baml
+C:\Users\Adam\Desktop\ProjektOdZera\ClinicDBwithEF\Przychodnia\obj\Debug\LoginWindow.g.cs
+C:\Users\Adam\Desktop\ProjektOdZera\ClinicDBwithEF\Przychodnia\obj\Debug\LoginWindow.baml

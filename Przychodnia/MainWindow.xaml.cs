@@ -20,6 +20,8 @@ namespace Przychodnia
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        public static DataGrid dataGrid;
         public MainWindow()
         {
             InitializeComponent();
@@ -29,7 +31,6 @@ namespace Przychodnia
             LekarzeWindow lw = new LekarzeWindow();
             lw.Show();
             this.Close();
-
         }
         private void buttonPatients(object sender, RoutedEventArgs e)
         {

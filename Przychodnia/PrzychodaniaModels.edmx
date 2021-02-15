@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PrzychodniaDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="PrzychodniaDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Lekarze">
           <Key>
             <PropertyRef Name="Id" />
@@ -33,6 +33,14 @@
           <Property Name="Pacjent_ID" Type="int" Nullable="false" />
           <Property Name="NazwaRecepty" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="NumerRecepty" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Uzytkownicy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazwaUzytkownika" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Haslo" Type="nchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="Wizyty">
           <Key>
@@ -84,6 +92,7 @@
           <EntitySet Name="Lekarze" EntityType="Self.Lekarze" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pacjenci" EntityType="Self.Pacjenci" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Recepty" EntityType="Self.Recepty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Uzytkownicy" EntityType="Self.Uzytkownicy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Wizyty" EntityType="Self.Wizyty" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Recepty_Pacjenci" Association="Self.FK_Recepty_Pacjenci">
             <End Role="Pacjenci" EntitySet="Pacjenci" />
@@ -98,8 +107,7 @@
             <End Role="Wizyty" EntitySet="Wizyty" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PrzychodniaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -201,7 +209,16 @@
             <End Role="Pacjenci" EntitySet="Pacjenci" />
             <End Role="Wizyty" EntitySet="Wizyty" />
           </AssociationSet>
+          <EntitySet Name="Uzytkownicy" EntityType="PrzychodniaDBModel.Uzytkownicy" />
         </EntityContainer>
+        <EntityType Name="Uzytkownicy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazwaUzytkownika" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Haslo" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -248,6 +265,15 @@
                 <ScalarProperty Name="Pacjent_ID" ColumnName="Pacjent_ID" />
                 <ScalarProperty Name="DataWizyty" ColumnName="DataWizyty" />
                 <ScalarProperty Name="NumerPokoju" ColumnName="NumerPokoju" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Uzytkownicy">
+            <EntityTypeMapping TypeName="PrzychodniaDBModel.Uzytkownicy">
+              <MappingFragment StoreEntitySet="Uzytkownicy">
+                <ScalarProperty Name="Haslo" ColumnName="Haslo" />
+                <ScalarProperty Name="NazwaUzytkownika" ColumnName="NazwaUzytkownika" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -29,5 +29,6 @@ namespace Przychodnia
         public virtual DbSet<Pacjenci> Pacjenci { get; set; }
         public virtual DbSet<Recepty> Recepty { get; set; }
         public virtual DbSet<Wizyty> Wizyty { get; set; }
+        public virtual DbSet<Uzytkownicy> Uzytkownicy { get; set; }
     }
 }

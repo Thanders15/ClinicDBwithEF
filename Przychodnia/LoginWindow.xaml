@@ -1,0 +1,20 @@
+﻿<Window x:Class="Przychodnia.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Przychodnia"
+        mc:Ignorable="d"
+        Title="Menu Glowne" Height="380" Width="380" FontSize="13" Background="#8B96D9">
+    <Border Background="#2e3137" CornerRadius="20" Margin="20">
+        <StackPanel Margin="20">
+            <Label Content="Panel logowania" Foreground="White" FontSize="25" HorizontalAlignment="Center"/>
+            <Separator></Separator>
+            <Label Content="Login" Foreground="White"/>
+            <TextBox Name="txtUsername" Background="#545d6a" Foreground="White" FontSize="18"/>
+            <Label Content="Hasło" Foreground="White"/>
+            <PasswordBox Name="txtPassword" Background="#545d6a" Foreground="White" FontSize="18"/>
+            <Button Name="btnSubmit" Click="btnSubmit_Click" Content="Zaloguj" Margin="40 20" Background="#545d6a" Foreground="White" FontSize="18" Height="51"/>
+        </StackPanel>
+    </Border>
+</Window>

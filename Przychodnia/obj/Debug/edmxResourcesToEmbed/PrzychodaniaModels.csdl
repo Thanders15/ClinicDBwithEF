@@ -98,5 +98,14 @@
       <End Role="Pacjenci" EntitySet="Pacjenci" />
       <End Role="Wizyty" EntitySet="Wizyty" />
     </AssociationSet>
+    <EntitySet Name="Uzytkownicy" EntityType="PrzychodniaDBModel.Uzytkownicy" />
   </EntityContainer>
+  <EntityType Name="Uzytkownicy">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NazwaUzytkownika" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Haslo" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
 </Schema>

@@ -89,6 +89,9 @@
     <Compile Include="LekarzeWindow.xaml.cs">
       <DependentUpon>LekarzeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pacjenci.cs">
       <DependentUpon>PrzychodaniaModels.tt</DependentUpon>
     </Compile>
@@ -110,11 +113,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PrzychodaniaModels.edmx</DependentUpon>
     </Compile>
+    <Compile Include="PrzychodniaDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PrzychodniaDBDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Recepty.cs">
       <DependentUpon>PrzychodaniaModels.tt</DependentUpon>
     </Compile>
     <Compile Include="ReceptyWindow.xaml.cs">
       <DependentUpon>ReceptyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Uzytkownicy.cs">
+      <DependentUpon>PrzychodaniaModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Wizyty.cs">
       <DependentUpon>PrzychodaniaModels.tt</DependentUpon>
@@ -123,6 +134,10 @@
       <DependentUpon>WizytyWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="LekarzeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -180,6 +195,17 @@
     </EntityDeploy>
     <None Include="PrzychodaniaModels.edmx.diagram">
       <DependentUpon>PrzychodaniaModels.edmx</DependentUpon>
+    </None>
+    <None Include="PrzychodniaDBDataSet.xsc">
+      <DependentUpon>PrzychodniaDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="PrzychodniaDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PrzychodniaDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PrzychodniaDBDataSet.xss">
+      <DependentUpon>PrzychodniaDBDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

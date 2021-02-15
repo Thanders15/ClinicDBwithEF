@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,8 +44,36 @@ namespace Przychodnia
             }
             this.gridDoctors.ItemsSource = docs.ToList();
         }
-        private int updatingDoctorID = 0;
 
+       
+        private void AddingDoctor(object sender, RoutedEventArgs e)
+        {
+            PrzychodniaDBEntities db = new PrzychodniaDBEntities();
+            {
+                Lekarze newDoktor = new Lekarze()
+                {
+                    Imie = txtName.Text,
+                    Nazwisko = txtSurname.Text,
+                    StopienNaukowy = txtTitle.Text,
+                    Specjalizacja = txtSpecialization.Text,
+                };
+                db.Lekarze.AddOrUpdate(newDoktor);
+                db.SaveChanges();
+            }
+        }
+
+        private void LoadDoctors()
+        {
+            PrzychodniaDBEntities db = new PrzychodniaDBEntities();
+            this.gridDoctors.ItemsSource = db.Lekarze.ToList();
+        }
+        private void RefreshDoctors(object sender, RoutedEventArgs e)
+        {
+            PrzychodniaDBEntities db = new PrzychodniaDBEntities();
+            var data = from r in db.Lekarze select r;
+            this.gridDoctors.ItemsSource = data.ToList();
+        }
+        private int updatingDoctorID = 0;
         private void ShowDoctors(object sender, SelectionChangedEventArgs e)
         {
             if (this.gridDoctors.SelectedIndex >= 0)
@@ -64,34 +93,6 @@ namespace Przychodnia
                 }
             }
         }
-        private void AddingDoctor(object sender, RoutedEventArgs e)
-        {
-            PrzychodniaDBEntities db = new PrzychodniaDBEntities();
-            {
-                Lekarze newDoktor = new Lekarze()
-                {
-                    Imie = txtName.Text,
-                    Nazwisko = txtSurname.Text,
-                    StopienNaukowy = txtTitle.Text,
-                    Specjalizacja = txtSpecialization.Text,
-                };
-
-                db.Lekarze.Add(newDoktor);
-                db.SaveChanges();
-            }
-        }
-
-        private void LoadDoctors()
-        {
-            PrzychodniaDBEntities db = new PrzychodniaDBEntities();
-            this.gridDoctors.ItemsSource = db.Lekarze.ToList();
-        }
-        private void RefreshDoctors(object sender, RoutedEventArgs e)
-        {
-            PrzychodniaDBEntities db = new PrzychodniaDBEntities();
-            var data = from r in db.Lekarze select r;
-            this.gridDoctors.ItemsSource = data.ToList();
-        } 
         private void DeleteDoctor(object sender, RoutedEventArgs e)
         {
             PrzychodniaDBEntities db = new PrzychodniaDBEntities();
@@ -101,8 +102,14 @@ namespace Przychodnia
             db.Lekarze.Remove(delete);
             db.SaveChanges();
             gridDoctors.ItemsSource = db.Lekarze.ToList();
-
-
         }
+   
+        private void backToMainMenu(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = new MainWindow();
+            mw.Show();
+            this.Close();
+        }
+        
     }
 }

@@ -29,6 +29,14 @@
     <Property Name="NazwaRecepty" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="NumerRecepty" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="Uzytkownicy">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NazwaUzytkownika" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Haslo" Type="nchar" MaxLength="10" Nullable="false" />
+  </EntityType>
   <EntityType Name="Wizyty">
     <Key>
       <PropertyRef Name="Id" />
@@ -79,6 +87,7 @@
     <EntitySet Name="Lekarze" EntityType="Self.Lekarze" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Pacjenci" EntityType="Self.Pacjenci" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Recepty" EntityType="Self.Recepty" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Uzytkownicy" EntityType="Self.Uzytkownicy" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Wizyty" EntityType="Self.Wizyty" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Recepty_Pacjenci" Association="Self.FK_Recepty_Pacjenci">
       <End Role="Pacjenci" EntitySet="Pacjenci" />

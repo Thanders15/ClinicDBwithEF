@@ -12,6 +12,7 @@
         <AssociationConnector Association="PrzychodniaDBModel.FK_Wizyty_Lekarze" ManuallyRouted="false" />
         <AssociationConnector Association="PrzychodniaDBModel.FK_Recepty_Pacjenci" ManuallyRouted="false" />
         <AssociationConnector Association="PrzychodniaDBModel.FK_Wizyty_Pacjenci" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PrzychodniaDBModel.Uzytkownicy" Width="1.5" PointX="6.75" PointY="0.875" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
