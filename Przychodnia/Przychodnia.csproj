@@ -64,6 +64,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -85,8 +86,14 @@
     <Compile Include="Lekarze.cs">
       <DependentUpon>PrzychodaniaModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="LekarzeWindow.xaml.cs">
+      <DependentUpon>LekarzeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pacjenci.cs">
       <DependentUpon>PrzychodaniaModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PacjenciWindow.xaml.cs">
+      <DependentUpon>PacjenciWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="PrzychodaniaModels.Context.cs">
       <AutoGen>True</AutoGen>
@@ -106,10 +113,16 @@
     <Compile Include="Recepty.cs">
       <DependentUpon>PrzychodaniaModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="ReceptyWindow.xaml.cs">
+      <DependentUpon>ReceptyWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Wizyty.cs">
       <DependentUpon>PrzychodaniaModels.tt</DependentUpon>
     </Compile>
-    <Page Include="Lekarze.xaml">
+    <Compile Include="WizytyWindow.xaml.cs">
+      <DependentUpon>WizytyWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="LekarzeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -121,13 +134,22 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Lekarze.xaml.cs">
-      <DependentUpon>Lekarze.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PacjenciWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReceptyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WizytyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -175,10 +197,10 @@
       <LastGenOutput>PrzychodaniaModels.cs</LastGenOutput>
     </Content>
     <Content Include="PrzychodniaDB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="PrzychodniaDB_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>PrzychodniaDB.mdf</DependentUpon>
     </Content>
   </ItemGroup>

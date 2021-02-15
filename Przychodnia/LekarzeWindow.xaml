@@ -1,0 +1,33 @@
+﻿<Window x:Class="Przychodnia.LekarzeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Przychodnia"
+        mc:Ignorable="d"
+        Title="LekarzeWindow" Height="400" Width="800" Background="#8B96D9">
+    <Grid>
+        <DataGrid x:Name="gridDoctors" HorizontalAlignment="Left" Height="165" Margin="390,142,0,0" VerticalAlignment="Top" Width="394" SelectionChanged="ShowDoctors" />
+        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="18" HorizontalAlignment="Left" Height="80" Margin="53,21,0,0" VerticalAlignment="Top" Width="259" Background="#2A3340">
+            <Button Content="Dodaj lekarza" FontStyle="Italic" FontSize="20" Margin="24.2,9.2,24,9.4" FontWeight="Bold" Background="#91BBF2" Click="AddingDoctor"/>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="18" HorizontalAlignment="Left" Height="80" Margin="53,106,0,0" VerticalAlignment="Top" Width="259" Background="#2A3340" RenderTransformOrigin="0.488,1.784">
+            <Button Content="Usuń lekarza" FontStyle="Italic" FontSize="20" Margin="24.2,9.2,24,9.4" FontWeight="Bold" Background="#91BBF2" Click="DeleteDoctor"/>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="18" HorizontalAlignment="Left" Height="80" Margin="53,191,0,0" VerticalAlignment="Top" Width="259" Background="#2A3340" RenderTransformOrigin="0.488,1.784">
+            <Button Content="Zaktualizuj lekarza" FontStyle="Italic" FontSize="20" Margin="24.2,9.2,24,9.4" FontWeight="Bold" Background="#91BBF2"/>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="18" HorizontalAlignment="Left" Height="80" Margin="53,276,0,0" VerticalAlignment="Top" Width="259" Background="#2A3340" RenderTransformOrigin="0.488,1.784">
+            <Button Content="Odśwież" FontStyle="Italic" FontSize="20" FontWeight="Bold" Margin="24.2,9.2,24,9.4" Background="#91BBF2" Click="RefreshDoctors"/>
+        </Border>
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="390,19,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Microsoft New Tai Lue" Width="166"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="505,23,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Microsoft New Tai Lue"/>
+        <Label Content="Nazwisko:" HorizontalAlignment="Left" Margin="390,47,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Microsoft New Tai Lue" Width="197"/>
+        <TextBox x:Name="txtSurname" HorizontalAlignment="Left" Height="23" Margin="505,51,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Microsoft New Tai Lue"/>
+        <Label Content="Tytuł naukowy:" HorizontalAlignment="Left" Margin="390,78,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Microsoft New Tai Lue" Width="225"/>
+        <TextBox x:Name="txtTitle" HorizontalAlignment="Left" Height="23" Margin="505,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Microsoft New Tai Lue"/>
+        <Label Content="Specjalizacja:" HorizontalAlignment="Left" Margin="390,107,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Microsoft New Tai Lue" Width="197"/>
+        <TextBox x:Name="txtSpecialization" HorizontalAlignment="Left" Height="23" Margin="505,107,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Microsoft New Tai Lue"/>
+
+    </Grid>
+</Window>

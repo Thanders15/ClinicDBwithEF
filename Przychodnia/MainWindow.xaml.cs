@@ -23,7 +23,28 @@ namespace Przychodnia
         public MainWindow()
         {
             InitializeComponent();
-            PrzychodniaDBEntities db = new PrzychodniaDBEntities();       
+        }
+        private void buttonDoctors(object sender, RoutedEventArgs e)
+        {
+            LekarzeWindow lw = new LekarzeWindow();
+            lw.Show();
+            this.Close();
+
+        }
+        private void buttonPatients(object sender, RoutedEventArgs e)
+        {
+            PacjenciWindow pw = new PacjenciWindow();
+            pw.Show();
+        }
+        private void buttonVisits(object sender, RoutedEventArgs e)
+        {
+            WizytyWindow ww = new WizytyWindow();
+            ww.Show();
+        }
+        private void buttonPrescriptions(object sender, RoutedEventArgs e)
+        {
+            WizytyWindow ww = new WizytyWindow();
+            ww.Show();
         }
     }
 }

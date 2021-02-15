@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("przychodaniamodels.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("przychodaniamodels.tt")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("przychodniadb.mdf")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("przychodniadb_log.ldf")]
 
