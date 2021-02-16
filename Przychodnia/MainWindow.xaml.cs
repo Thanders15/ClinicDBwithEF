@@ -36,16 +36,19 @@ namespace Przychodnia
         {
             PacjenciWindow pw = new PacjenciWindow();
             pw.Show();
+            this.Close();
         }
         private void buttonVisits(object sender, RoutedEventArgs e)
         {
             WizytyWindow ww = new WizytyWindow();
             ww.Show();
+            this.Close();
         }
         private void buttonPrescriptions(object sender, RoutedEventArgs e)
         {
-            WizytyWindow ww = new WizytyWindow();
-            ww.Show();
+            ReceptyWindow rw = new ReceptyWindow();
+            rw.Show();
+            this.Close();
         }
     }
 }

@@ -31,10 +31,10 @@ namespace Przychodnia
             {
                 Pacjenci newPatient = new Pacjenci()
                 {
-                    Imie = txtName2.Text,
-                    Nazwisko = txtSurname2.Text,
-                    Pesel = int.Parse(txtPesel2.Text),
-                    Adres = txtAdres2.Text,
+                    Imie = txtName.Text,
+                    Nazwisko = txtSurname.Text,
+                    Pesel = int.Parse(txtPesel.Text),
+                    Adres = txtAdres.Text,
                 };
                 db.Pacjenci.Add(newPatient);
                 db.SaveChanges();
@@ -56,9 +56,14 @@ namespace Przychodnia
         {
             PrzychodniaDBEntities db = new PrzychodniaDBEntities();
 
-            int Id = (pacjenciDataGrid.SelectedItem as Pacjenci).Id;
-            var deletePatient = db.Pacjenci.Where(m => m.Id == Id).Single();
-            db.Pacjenci.Remove(deletePatient);
+            try {
+                int Id = (pacjenciDataGrid.SelectedItem as Pacjenci).Id;
+                var deletePatient = db.Pacjenci.Where(m => m.Id == Id).Single();
+                db.Pacjenci.Remove(deletePatient);
+            }catch(System.NullReferenceException)
+            {
+                MessageBox.Show("Musisz wybrać pacjenta");
+            }
             db.SaveChanges();
             pacjenciDataGrid.ItemsSource = db.Pacjenci.ToList();
             LoadPatients();

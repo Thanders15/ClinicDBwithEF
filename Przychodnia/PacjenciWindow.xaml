@@ -26,13 +26,13 @@
                 <Button Content="Odśwież" FontStyle="Italic" FontSize="20" FontWeight="Bold" Margin="24.2,9.2,24,9.4" Background="#91BBF2" Click="RefreshPatients"/>
             </Border>
             <Label Content="Imię:" HorizontalAlignment="Left" Margin="390,19,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Microsoft New Tai Lue" Width="166"/>
-            <TextBox x:Name="txtName2" HorizontalAlignment="Left" Height="23" Margin="505,23,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Microsoft New Tai Lue"/>
+            <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="505,23,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Microsoft New Tai Lue"/>
             <Label Content="Nazwisko:" HorizontalAlignment="Left" Margin="390,47,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Microsoft New Tai Lue" Width="197"/>
-            <TextBox x:Name="txtSurname2" HorizontalAlignment="Left" Height="23" Margin="505,51,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Microsoft New Tai Lue"/>
+            <TextBox x:Name="txtSurname" HorizontalAlignment="Left" Height="23" Margin="505,51,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Microsoft New Tai Lue"/>
             <Label Content="Pesel:" HorizontalAlignment="Left" Margin="390,78,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Microsoft New Tai Lue" Width="225"/>
-            <TextBox x:Name="txtPesel2" HorizontalAlignment="Left" Height="23" Margin="505,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Microsoft New Tai Lue"/>
+            <TextBox x:Name="txtPesel" HorizontalAlignment="Left" Height="23" Margin="505,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Microsoft New Tai Lue"/>
             <Label Content="Adres:" HorizontalAlignment="Left" Margin="390,108,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Microsoft New Tai Lue" Width="197"/>
-            <TextBox x:Name="txtAdres2" HorizontalAlignment="Left" Height="23" Margin="505,107,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Microsoft New Tai Lue"/>
+            <TextBox x:Name="txtAdres" HorizontalAlignment="Left" Height="23" Margin="505,107,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Microsoft New Tai Lue"/>
             <Border BorderBrush="Black" BorderThickness="1" CornerRadius="18" HorizontalAlignment="Left" Height="57" Margin="675,299,0,0" VerticalAlignment="Top" Width="109" Background="#2A3340" RenderTransformOrigin="0.488,1.784">
                 <Button Content="Powrót" FontStyle="Italic" FontSize="14" FontWeight="Bold" Margin="9.2,9.2,9.2,9.2" Background="MediumAquamarine" Click="backToMainMenu"/>
             </Border>

@@ -59,9 +59,16 @@ namespace Przychodnia
         {
             PrzychodniaDBEntities db = new PrzychodniaDBEntities();
 
+            try
+            {
             int Id = (gridDoctors.SelectedItem as Lekarze).Id;
             var delete = db.Lekarze.Where(m => m.Id == Id).Single();
             db.Lekarze.Remove(delete);
+            }
+            catch(System.NullReferenceException ex)
+            {
+                MessageBox.Show("Musisz wybrać lekarza");
+            }            
             db.SaveChanges();
             gridDoctors.ItemsSource = db.Lekarze.ToList();
             LoadDoctors();
