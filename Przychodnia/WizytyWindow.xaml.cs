@@ -23,5 +23,16 @@ namespace Przychodnia
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            Przychodnia.PrzychodniaDBDataSetVVV przychodniaDBDataSetVVV = ((Przychodnia.PrzychodniaDBDataSetVVV)(this.FindResource("przychodniaDBDataSetVVV")));
+            // Załaduj dane do tabeli Wizyty. Możesz modyfikować ten kod w razie potrzeby.
+            Przychodnia.PrzychodniaDBDataSetVVVTableAdapters.WizytyTableAdapter przychodniaDBDataSetVVVWizytyTableAdapter = new Przychodnia.PrzychodniaDBDataSetVVVTableAdapters.WizytyTableAdapter();
+            przychodniaDBDataSetVVVWizytyTableAdapter.Fill(przychodniaDBDataSetVVV.Wizyty);
+            System.Windows.Data.CollectionViewSource wizytyViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("wizytyViewSource")));
+            wizytyViewSource.View.MoveCurrentToFirst();
+        }
     }
 }

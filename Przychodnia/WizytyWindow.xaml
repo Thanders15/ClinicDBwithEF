@@ -5,8 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Przychodnia"
         mc:Ignorable="d"
-        Title="WizytyWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="WizytyWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:PrzychodniaDBDataSetVVV x:Key="przychodniaDBDataSetVVV"/>
+        <CollectionViewSource x:Key="wizytyViewSource" Source="{Binding Wizyty, Source={StaticResource przychodniaDBDataSetVVV}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource wizytyViewSource}">
+        <DataGrid x:Name="wizytyDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="470,210,9.6,10" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="lekarz_IDColumn" Binding="{Binding Lekarz_ID}" Header="Lekarz ID" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="pacjent_IDColumn" Binding="{Binding Pacjent_ID}" Header="Pacjent ID" Width="SizeToHeader"/>
+                <DataGridTemplateColumn x:Name="dataWizytyColumn" Header="Data Wizyty" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding DataWizyty, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="numerPokojuColumn" Binding="{Binding NumerPokoju}" Header="Numer Pokoju" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </Window>

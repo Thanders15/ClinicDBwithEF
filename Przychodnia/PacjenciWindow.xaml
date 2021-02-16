@@ -5,8 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Przychodnia"
         mc:Ignorable="d"
-        Title="PacjenciWindow" Height="450" Width="800">
+        Title="PacjenciWindow" Height="400" Width="800" Loaded="Window_Loaded" Background="#8B96D9">
+
+    <Window.Resources>
+        <local:PrzychodniaDBDataSetVVV x:Key="przychodniaDBDataSetVVV"/>
+        <CollectionViewSource x:Key="pacjenciViewSource" Source="{Binding Pacjenci, Source={StaticResource przychodniaDBDataSetVVV}}"/>
+    </Window.Resources>
     <Grid>
-        
+        <Grid DataContext="{StaticResource pacjenciViewSource}">
+            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="18" HorizontalAlignment="Left" Height="80" Margin="53,21,0,0" VerticalAlignment="Top" Width="259" Background="#2A3340">
+                <Button Content="Dodaj pacjenta" FontStyle="Italic" FontSize="20" Margin="24.2,9.2,24,9.4" FontWeight="Bold" Background="#91BBF2" Click="AddingPatient"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="18" HorizontalAlignment="Left" Height="80" Margin="53,106,0,0" VerticalAlignment="Top" Width="259" Background="#2A3340" RenderTransformOrigin="0.488,1.784">
+                <Button Content="Usuń pacjenta" FontStyle="Italic" FontSize="20" Margin="24.2,9.2,24,9.4" FontWeight="Bold" Background="#91BBF2" Click="DeletePatient"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="18" HorizontalAlignment="Left" Height="80" Margin="53,191,0,0" VerticalAlignment="Top" Width="259" Background="#2A3340" RenderTransformOrigin="0.488,1.784">
+                <Button Content="Zaktualizuj pacjenta" FontStyle="Italic" FontSize="20" Margin="24.2,9.2,24,9.4" FontWeight="Bold" Background="#91BBF2" Click="UpdateDoctor" />
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="18" HorizontalAlignment="Left" Height="80" Margin="53,276,0,0" VerticalAlignment="Top" Width="259" Background="#2A3340" RenderTransformOrigin="0.488,1.784">
+                <Button Content="Odśwież" FontStyle="Italic" FontSize="20" FontWeight="Bold" Margin="24.2,9.2,24,9.4" Background="#91BBF2" Click="RefreshPatients"/>
+            </Border>
+            <Label Content="Imię:" HorizontalAlignment="Left" Margin="390,19,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Microsoft New Tai Lue" Width="166"/>
+            <TextBox x:Name="txtName2" HorizontalAlignment="Left" Height="23" Margin="505,23,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Microsoft New Tai Lue"/>
+            <Label Content="Nazwisko:" HorizontalAlignment="Left" Margin="390,47,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Microsoft New Tai Lue" Width="197"/>
+            <TextBox x:Name="txtSurname2" HorizontalAlignment="Left" Height="23" Margin="505,51,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Microsoft New Tai Lue"/>
+            <Label Content="Pesel:" HorizontalAlignment="Left" Margin="390,78,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Microsoft New Tai Lue" Width="225"/>
+            <TextBox x:Name="txtPesel2" HorizontalAlignment="Left" Height="23" Margin="505,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Microsoft New Tai Lue"/>
+            <Label Content="Adres:" HorizontalAlignment="Left" Margin="390,108,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Microsoft New Tai Lue" Width="197"/>
+            <TextBox x:Name="txtAdres2" HorizontalAlignment="Left" Height="23" Margin="505,107,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Microsoft New Tai Lue"/>
+            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="18" HorizontalAlignment="Left" Height="57" Margin="675,299,0,0" VerticalAlignment="Top" Width="109" Background="#2A3340" RenderTransformOrigin="0.488,1.784">
+                <Button Content="Powrót" FontStyle="Italic" FontSize="14" FontWeight="Bold" Margin="9.2,9.2,9.2,9.2" Background="MediumAquamarine" Click="backToMainMenu"/>
+            </Border>
+            <DataGrid x:Name="pacjenciDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="390,142,46.6,76.4" RowDetailsVisibilityMode="VisibleWhenSelected">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="imieColumn" Binding="{Binding Imie}" Header="Imie" Width="60"/>
+                    <DataGridTextColumn x:Name="nazwiskoColumn" Binding="{Binding Nazwisko}" Header="Nazwisko" Width="80"/>
+                    <DataGridTextColumn x:Name="peselColumn" Binding="{Binding Pesel}" Header="Pesel" Width="70"/>
+                    <DataGridTextColumn x:Name="adresColumn" Binding="{Binding Adres}" Header="Adres" Width="200"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
     </Grid>
 </Window>

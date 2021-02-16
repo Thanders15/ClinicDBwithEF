@@ -118,6 +118,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PrzychodniaDBDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="PrzychodniaDBDataSetVVV.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PrzychodniaDBDataSetVVV.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Recepty.cs">
       <DependentUpon>PrzychodaniaModels.tt</DependentUpon>
     </Compile>
@@ -206,6 +211,17 @@
     </None>
     <None Include="PrzychodniaDBDataSet.xss">
       <DependentUpon>PrzychodniaDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="PrzychodniaDBDataSetVVV.xsc">
+      <DependentUpon>PrzychodniaDBDataSetVVV.xsd</DependentUpon>
+    </None>
+    <None Include="PrzychodniaDBDataSetVVV.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PrzychodniaDBDataSetVVV.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PrzychodniaDBDataSetVVV.xss">
+      <DependentUpon>PrzychodniaDBDataSetVVV.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

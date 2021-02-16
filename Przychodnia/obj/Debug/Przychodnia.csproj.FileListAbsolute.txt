@@ -31,3 +31,4 @@ C:\Users\Adam\Desktop\ProjektOdZera\ClinicDBwithEF\Przychodnia\obj\Debug\Recepty
 C:\Users\Adam\Desktop\ProjektOdZera\ClinicDBwithEF\Przychodnia\obj\Debug\WizytyWindow.baml
 C:\Users\Adam\Desktop\ProjektOdZera\ClinicDBwithEF\Przychodnia\obj\Debug\LoginWindow.g.cs
 C:\Users\Adam\Desktop\ProjektOdZera\ClinicDBwithEF\Przychodnia\obj\Debug\LoginWindow.baml
+C:\Users\Adam\Desktop\ProjektOdZera\ClinicDBwithEF\Przychodnia\obj\Debug\GeneratedInternalTypeHelper.g.cs
