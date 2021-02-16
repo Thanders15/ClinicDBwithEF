@@ -5,18 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Przychodnia"
         mc:Ignorable="d"
-        Title="WizytyWindow" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="WizytyWindow" Height="400" Width="800" Loaded="Window_Loaded" Background="#8B96D9">
     <Window.Resources>
         <local:PrzychodniaDBDataSetVVV x:Key="przychodniaDBDataSetVVV"/>
         <CollectionViewSource x:Key="wizytyViewSource" Source="{Binding Wizyty, Source={StaticResource przychodniaDBDataSetVVV}}"/>
     </Window.Resources>
     <Grid DataContext="{StaticResource wizytyViewSource}">
-        <DataGrid x:Name="wizytyDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="470,210,9.6,10" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="18" HorizontalAlignment="Left" Height="80" Margin="53,21,0,0" VerticalAlignment="Top" Width="259" Background="#2A3340">
+            <Button Content="Dodaj wizyte" FontStyle="Italic" FontSize="20" Margin="24.2,9.2,24,9.4" FontWeight="Bold" Background="#91BBF2" Click="AddingVisit"/>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="18" HorizontalAlignment="Left" Height="80" Margin="53,106,0,0" VerticalAlignment="Top" Width="259" Background="#2A3340" RenderTransformOrigin="0.488,1.784">
+            <Button Content="Usuń wizyte" FontStyle="Italic" FontSize="20" Margin="24.2,9.2,24,9.4" FontWeight="Bold" Background="#91BBF2" Click="DeleteVisit"/>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="18" HorizontalAlignment="Left" Height="80" Margin="53,191,0,0" VerticalAlignment="Top" Width="259" Background="#2A3340" RenderTransformOrigin="0.488,1.784">
+            <Button Content="Zaktualizuj wizyte" FontStyle="Italic" FontSize="20" Margin="24.2,9.2,24,9.4" FontWeight="Bold" Background="#91BBF2" Click="UpdateDoctor" />
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="18" HorizontalAlignment="Left" Height="80" Margin="53,276,0,0" VerticalAlignment="Top" Width="259" Background="#2A3340" RenderTransformOrigin="0.488,1.784">
+            <Button Content="Odśwież" FontStyle="Italic" FontSize="20" FontWeight="Bold" Margin="24.2,9.2,24,9.4" Background="#91BBF2" Click="RefreshVisits"/>
+        </Border>
+        <Label Content="ID lekarza" HorizontalAlignment="Left" Margin="390,19,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Microsoft New Tai Lue" Width="166"/>
+        <TextBox x:Name="txtLekarzID" HorizontalAlignment="Left" Height="23" Margin="505,23,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Microsoft New Tai Lue"/>
+        <Label Content="ID pacjenta" HorizontalAlignment="Left" Margin="390,47,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Microsoft New Tai Lue" Width="197"/>
+        <TextBox x:Name="txtPacjentId" HorizontalAlignment="Left" Height="23" Margin="505,51,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Microsoft New Tai Lue"/>
+        <Label Content="Data wizyty:" HorizontalAlignment="Left" Margin="390,78,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Microsoft New Tai Lue" Width="225"/>
+        <DatePicker x:Name="txtData" HorizontalAlignment="Left" VerticalAlignment="Top" Width="190" Margin="505,79,0,0" Height="22"/>
+        <Label Content="Numer pokoju:" HorizontalAlignment="Left" Margin="390,107,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Microsoft New Tai Lue" Width="197"/>
+        <TextBox x:Name="txtNumerPokoju" HorizontalAlignment="Left" Height="23" Margin="505,107,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Microsoft New Tai Lue"/>
+        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="18" HorizontalAlignment="Left" Height="48" Margin="675,312,0,0" VerticalAlignment="Top" Width="109" Background="#2A3340" RenderTransformOrigin="0.488,1.784">
+            <Button Content="Powrót" FontStyle="Italic" FontSize="14" FontWeight="Bold" Margin="9.2,9.2,9.2,9.2" Background="MediumAquamarine" Click="backToMainMenu"/>
+        </Border>
+        <DataGrid x:Name="wizytyDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="390,142,9.6,63.4" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="lekarz_IDColumn" Binding="{Binding Lekarz_ID}" Header="Lekarz ID" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="pacjent_IDColumn" Binding="{Binding Pacjent_ID}" Header="Pacjent ID" Width="SizeToHeader"/>
-                <DataGridTemplateColumn x:Name="dataWizytyColumn" Header="Data Wizyty" Width="SizeToHeader">
+                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="10"/>
+                <DataGridTextColumn x:Name="lekarz_IDColumn" Binding="{Binding Lekarz_ID}" Header="Lekarz ID" Width="58"/>
+                <DataGridTextColumn x:Name="pacjent_IDColumn" Binding="{Binding Pacjent_ID}" Header="Pacjent ID" Width="62"/>
+                <DataGridTemplateColumn x:Name="dataWizytyColumn" Header="Data Wizyty" Width="120">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <DatePicker SelectedDate="{Binding DataWizyty, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
@@ -26,6 +49,7 @@
                 <DataGridTextColumn x:Name="numerPokojuColumn" Binding="{Binding NumerPokoju}" Header="Numer Pokoju" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
+
 
     </Grid>
 </Window>

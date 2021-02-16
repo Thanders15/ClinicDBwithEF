@@ -22,17 +22,80 @@ namespace Przychodnia
         public WizytyWindow()
         {
             InitializeComponent();
+            LoadVisits();
+            PrzychodniaDBEntities db = new PrzychodniaDBEntities();
+        }
+        private void AddingVisit(object sender, RoutedEventArgs e)
+        {
+            PrzychodniaDBEntities db = new PrzychodniaDBEntities();
+            {
+                try
+                {
+                    Wizyty newVisit = new Wizyty()
+                {
+                    Lekarz_ID = int.Parse(txtLekarzID.Text),
+                    Pacjent_ID = int.Parse(txtPacjentId.Text),
+                    DataWizyty = DateTime.Parse(txtData.Text),
+                    NumerPokoju = int.Parse(txtNumerPokoju.Text),
+                };
+                db.Wizyty.Add(newVisit);
+                
+                    db.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Id pacjenta albo lekarza nie istnieje w bazie danych lub nie wybrałeś daty");
+                }
+                LoadVisits();
+            }
+        }
+        private void LoadVisits()
+        {
+            PrzychodniaDBEntities db = new PrzychodniaDBEntities();
+            this.wizytyDataGrid.ItemsSource = db.Wizyty.ToList();
+        }
+        private void RefreshVisits(object sender, RoutedEventArgs e)
+        {
+            PrzychodniaDBEntities db = new PrzychodniaDBEntities();
+            var data = from r in db.Wizyty select r;
+            this.wizytyDataGrid.ItemsSource = data.ToList();
+        }
+        private void DeleteVisit(object sender, RoutedEventArgs e)
+        {
+            PrzychodniaDBEntities db = new PrzychodniaDBEntities();
+            try
+            {
+                int Id = (wizytyDataGrid.SelectedItem as Wizyty).Id;
+                var deleteVisit = db.Wizyty.Where(m => m.Id == Id).Single();
+                db.Wizyty.Remove(deleteVisit);
+            }
+            catch (System.NullReferenceException)
+            {
+                MessageBox.Show("Musisz wybrać wizyte");
+            }
+            db.SaveChanges();
+            wizytyDataGrid.ItemsSource = db.Wizyty.ToList();
+            LoadVisits();
+        }
+        private void backToMainMenu(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = new MainWindow();
+            mw.Show();
+            this.Close();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
             Przychodnia.PrzychodniaDBDataSetVVV przychodniaDBDataSetVVV = ((Przychodnia.PrzychodniaDBDataSetVVV)(this.FindResource("przychodniaDBDataSetVVV")));
-            // Załaduj dane do tabeli Wizyty. Możesz modyfikować ten kod w razie potrzeby.
-            Przychodnia.PrzychodniaDBDataSetVVVTableAdapters.WizytyTableAdapter przychodniaDBDataSetVVVWizytyTableAdapter = new Przychodnia.PrzychodniaDBDataSetVVVTableAdapters.WizytyTableAdapter();
-            przychodniaDBDataSetVVVWizytyTableAdapter.Fill(przychodniaDBDataSetVVV.Wizyty);
-            System.Windows.Data.CollectionViewSource wizytyViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("wizytyViewSource")));
-            wizytyViewSource.View.MoveCurrentToFirst();
+            // Załaduj dane do tabeli Pacjenci. Możesz modyfikować ten kod w razie potrzeby.
+            Przychodnia.PrzychodniaDBDataSetVVVTableAdapters.PacjenciTableAdapter przychodniaDBDataSetVVVPacjenciTableAdapter = new Przychodnia.PrzychodniaDBDataSetVVVTableAdapters.PacjenciTableAdapter();
+            przychodniaDBDataSetVVVPacjenciTableAdapter.Fill(przychodniaDBDataSetVVV.Pacjenci);
+            System.Windows.Data.CollectionViewSource pacjenciViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("wizytyViewSource")));
+            pacjenciViewSource.View.MoveCurrentToFirst();
+        }
+        private void UpdateDoctor(object sender, RoutedEventArgs e)
+        {
+            PrzychodniaDBEntities db = new PrzychodniaDBEntities();
         }
     }
 }

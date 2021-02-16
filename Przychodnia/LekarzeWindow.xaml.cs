@@ -68,8 +68,16 @@ namespace Przychodnia
             catch(System.NullReferenceException ex)
             {
                 MessageBox.Show("Musisz wybrać lekarza");
-            }            
+            }
+            try
+            {
             db.SaveChanges();
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException)
+            {
+                MessageBox.Show("Nie możesz usunąć lekarza, bo jego ID jest przypisane w innej tabeli");
+            }
+
             gridDoctors.ItemsSource = db.Lekarze.ToList();
             LoadDoctors();
         }   
