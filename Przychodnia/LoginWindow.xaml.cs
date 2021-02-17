@@ -23,7 +23,6 @@ namespace Przychodnia
         {
             InitializeComponent();
         }
-
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
             PrzychodniaDBEntities db = new PrzychodniaDBEntities();
@@ -39,11 +38,9 @@ namespace Przychodnia
             }
             else
             {
-                MessageBox.Show("XD");
+                MessageBox.Show("Podaj poprawne dane do logowania");
+                return;
             }
-             
-
-
         }
     }
 }

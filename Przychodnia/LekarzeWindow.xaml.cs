@@ -32,8 +32,6 @@ namespace Przychodnia
         {
             PrzychodniaDBEntities db = new PrzychodniaDBEntities();
             {
-                try
-                {
                     Lekarze newDoktor = new Lekarze()
                     {
                         Imie = txtName.Text,
@@ -50,11 +48,6 @@ namespace Przychodnia
                         db.Lekarze.Add(newDoktor);
                         db.SaveChanges();
                     }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Id lekarza albo lekarza nie istnieje w bazie danych lub podałeś nieprawidłowe wartości");
-                }
                 LoadDoctors();
             }
         }
@@ -125,7 +118,7 @@ namespace Przychodnia
             }
             catch (Exception)
             {
-             MessageBox.Show("Musisz wybrać lekarza lub podałeś nieprawidłowe wartości");
+             MessageBox.Show("Musisz wybrać lekarza");
             }
             LoadDoctors();
         }

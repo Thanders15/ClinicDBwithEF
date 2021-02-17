@@ -21,7 +21,6 @@ namespace Przychodnia
     public partial class MainWindow : Window
     {
 
-        public static DataGrid dataGrid;
         public MainWindow()
         {
             InitializeComponent();

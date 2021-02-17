@@ -33,10 +33,10 @@ namespace Przychodnia
                 {
                     Imie = txtName.Text,
                     Nazwisko = txtSurname.Text,
-                    Pesel = int.Parse(txtPesel.Text),
+                    Pesel = Int64.Parse(txtPesel.Text),
                     Adres = txtAdres.Text,
                 };
-                if(txtName.Text == "" || txtSurname.Text == "" || int.Parse(txtPesel.Text) < 1010100000 || txtAdres.Text == "")
+                if(txtName.Text == "" || txtSurname.Text == "" || Int64.Parse(txtPesel.Text) < 1010100000 || txtAdres.Text == "")
                 {
                     MessageBox.Show("Wartości nie mogą być puste lub są za małe");
                 }

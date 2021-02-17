@@ -41,7 +41,7 @@
                     <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="SizeToHeader"/>
                     <DataGridTextColumn x:Name="imieColumn" Binding="{Binding Imie}" Header="Imie" Width="60"/>
                     <DataGridTextColumn x:Name="nazwiskoColumn" Binding="{Binding Nazwisko}" Header="Nazwisko" Width="80"/>
-                    <DataGridTextColumn x:Name="peselColumn" Binding="{Binding Pesel}" Header="Pesel" Width="70"/>
+                    <DataGridTextColumn x:Name="peselColumn" Binding="{Binding Pesel}" Header="Pesel" Width="90"/>
                     <DataGridTextColumn x:Name="adresColumn" Binding="{Binding Adres}" Header="Adres" Width="200"/>
                 </DataGrid.Columns>
             </DataGrid>

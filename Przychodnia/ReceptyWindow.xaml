@@ -38,7 +38,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" IsReadOnly="True" Width="SizeToHeader"/>
                     <DataGridTextColumn x:Name="pacjent_IDColumn" Binding="{Binding Pacjent_ID}" Header="Pacjent ID" Width="SizeToHeader"/>
-                    <DataGridTextColumn x:Name="nazwaReceptyColumn" Binding="{Binding NazwaRecepty}" Header="Nazwa Recepty" Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="nazwaReceptyColumn" Binding="{Binding NazwaRecepty}" Header="Nazwa Recepty" Width="185"/>
                     <DataGridTextColumn x:Name="numerReceptyColumn" Binding="{Binding NumerRecepty}" Header="Numer Recepty" Width="SizeToHeader"/>
                 </DataGrid.Columns>
             </DataGrid>
