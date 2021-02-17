@@ -36,8 +36,15 @@ namespace Przychodnia
                     Pesel = int.Parse(txtPesel.Text),
                     Adres = txtAdres.Text,
                 };
-                db.Pacjenci.Add(newPatient);
-                db.SaveChanges();
+                if(txtName.Text == "" || txtSurname.Text == "" || int.Parse(txtPesel.Text) < 1010100000 || txtAdres.Text == "")
+                {
+                    MessageBox.Show("Wartości nie mogą być puste lub są za małe");
+                }
+                else
+                {
+                    db.Pacjenci.Add(newPatient);
+                    db.SaveChanges();
+                }
                 LoadPatients();
             }
         }
@@ -64,7 +71,14 @@ namespace Przychodnia
             {
                 MessageBox.Show("Musisz wybrać pacjenta");
             }
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException)
+            {
+                MessageBox.Show("Nie możesz usunąć pacjenta, bo jego ID jest przypisane w innej tabeli");
+            }
             pacjenciDataGrid.ItemsSource = db.Pacjenci.ToList();
             LoadPatients();
         }
@@ -84,9 +98,23 @@ namespace Przychodnia
             System.Windows.Data.CollectionViewSource pacjenciViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("pacjenciViewSource")));
             pacjenciViewSource.View.MoveCurrentToFirst();
         }
-        private void UpdateDoctor(object sender, RoutedEventArgs e)
+        private void UpdatePatient(object sender, RoutedEventArgs e)
         {
             PrzychodniaDBEntities db = new PrzychodniaDBEntities();
+            try
+            {
+                int Id = (pacjenciDataGrid.SelectedItem as Pacjenci).Id;
+                var swapPatient = db.Pacjenci.Where(m => m.Id == Id).Single();
+                swapPatient.Imie = txtName.Text;
+                swapPatient.Nazwisko = txtSurname.Text;
+                swapPatient.Pesel = int.Parse(txtPesel.Text);
+                swapPatient.Adres = txtAdres.Text;
+                db.SaveChanges();
+            }
+            catch (Exception){
+                MessageBox.Show("Musisz wybrać pacjenta lub podałeś nieprawidłowe wartości");
+            }
+            LoadPatients();
         }
     }
 }

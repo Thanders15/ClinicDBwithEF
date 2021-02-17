@@ -32,15 +32,29 @@ namespace Przychodnia
         {
             PrzychodniaDBEntities db = new PrzychodniaDBEntities();
             {
-                Lekarze newDoktor = new Lekarze()
+                try
                 {
-                    Imie = txtName.Text,
-                    Nazwisko = txtSurname.Text,
-                    StopienNaukowy = txtTitle.Text,
-                    Specjalizacja = txtSpecialization.Text,
-                };
-                db.Lekarze.Add(newDoktor);
-                db.SaveChanges();
+                    Lekarze newDoktor = new Lekarze()
+                    {
+                        Imie = txtName.Text,
+                        Nazwisko = txtSurname.Text,
+                        StopienNaukowy = txtTitle.Text,
+                        Specjalizacja = txtSpecialization.Text,
+                    };
+                    if(txtName.Text == "" || txtSurname.Text == "" || txtTitle.Text == "" || txtSpecialization.Text == "")
+                    {
+                        MessageBox.Show("Wartości nie mogą być puste");
+                    }
+                    else
+                    {
+                        db.Lekarze.Add(newDoktor);
+                        db.SaveChanges();
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Id lekarza albo lekarza nie istnieje w bazie danych lub podałeś nieprawidłowe wartości");
+                }
                 LoadDoctors();
             }
         }
@@ -65,7 +79,7 @@ namespace Przychodnia
             var delete = db.Lekarze.Where(m => m.Id == Id).Single();
             db.Lekarze.Remove(delete);
             }
-            catch(System.NullReferenceException ex)
+            catch(System.NullReferenceException)
             {
                 MessageBox.Show("Musisz wybrać lekarza");
             }
@@ -73,7 +87,7 @@ namespace Przychodnia
             {
             db.SaveChanges();
             }
-            catch (System.Data.Entity.Infrastructure.DbUpdateException)
+            catch(System.Data.Entity.Infrastructure.DbUpdateException)
             {
                 MessageBox.Show("Nie możesz usunąć lekarza, bo jego ID jest przypisane w innej tabeli");
             }
@@ -99,6 +113,21 @@ namespace Przychodnia
         private void UpdateDoctor(object sender, RoutedEventArgs e)
         {
             PrzychodniaDBEntities db = new PrzychodniaDBEntities();
+            try
+            {
+                int Id = (gridDoctors.SelectedItem as Lekarze).Id;
+                var swapDoctor = db.Lekarze.Where(m => m.Id == Id).Single();
+                swapDoctor.Imie = txtName.Text;
+                swapDoctor.Nazwisko = txtSurname.Text;
+                swapDoctor.StopienNaukowy = txtTitle.Text;
+                swapDoctor.Specjalizacja = txtSpecialization.Text;
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+             MessageBox.Show("Musisz wybrać lekarza lub podałeś nieprawidłowe wartości");
+            }
+            LoadDoctors();
         }
     }
 }

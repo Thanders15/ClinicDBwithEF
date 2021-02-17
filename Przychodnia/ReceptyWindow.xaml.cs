@@ -30,21 +30,28 @@ namespace Przychodnia
         {
             PrzychodniaDBEntities db = new PrzychodniaDBEntities();
             {
-                Recepty newPrescription = new Recepty()
-                {
-                    Pacjent_ID = int.Parse(txtPacjentId.Text),
-                    NazwaRecepty = txtReceptaNazwa.Text,
-                    NumerRecepty = int.Parse(txtNumerRecepty.Text),
-                };
-                db.Recepty.AddOrUpdate(newPrescription);
                 try
                 {
-                    db.SaveChanges();
+                    Recepty newPrescription = new Recepty()
+                    {
+                        Pacjent_ID = int.Parse(txtPacjentId.Text),
+                        NazwaRecepty = txtReceptaNazwa.Text,
+                        NumerRecepty = int.Parse(txtNumerRecepty.Text),
+                    };
+                    if(int.Parse(txtNumerRecepty.Text) < 0 || txtReceptaNazwa.Text == "")
+                    {
+                        MessageBox.Show("Numer lub nazwa recepty jest niepoprawna");
+                    }
+                    else
+                    {
+                        db.Recepty.Add(newPrescription);
+                        db.SaveChanges();
+                    }
                 }
-                catch (System.Data.Entity.Infrastructure.DbUpdateException)
+                catch (Exception)
                 {
-                    MessageBox.Show("Id pacjenta nie istnieje w bazie danych");
-                }                                                            
+                    MessageBox.Show("Id pacjenta nie istnieje w bazie danych lub podałeś nieprawidłową wartość");
+                }
                 LoadPrescriptions();
             }
         }
@@ -92,9 +99,23 @@ namespace Przychodnia
             System.Windows.Data.CollectionViewSource pacjenciViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("receptyViewSource")));
             pacjenciViewSource.View.MoveCurrentToFirst();
         }
-        private void UpdateDoctor(object sender, RoutedEventArgs e)
+        private void UpdatePrescription(object sender, RoutedEventArgs e)
         {
             PrzychodniaDBEntities db = new PrzychodniaDBEntities();
+            try
+            {
+                int Id = (receptyDataGrid.SelectedItem as Recepty).Id;
+                var swapPrescription = db.Recepty.Where(m => m.Id == Id).Single();
+                swapPrescription.Pacjent_ID = int.Parse(txtPacjentId.Text);
+                swapPrescription.NumerRecepty = int.Parse(txtNumerRecepty.Text);
+                swapPrescription.NazwaRecepty = txtReceptaNazwa.Text;
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Musisz wybrać receptę lub podałeś nieprawidłowe wartości");
+            }
+            LoadPrescriptions();
         }
     }
 }

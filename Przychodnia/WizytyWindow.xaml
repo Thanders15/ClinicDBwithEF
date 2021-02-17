@@ -18,7 +18,7 @@
             <Button Content="Usuń wizyte" FontStyle="Italic" FontSize="20" Margin="24.2,9.2,24,9.4" FontWeight="Bold" Background="#91BBF2" Click="DeleteVisit"/>
         </Border>
         <Border BorderBrush="Black" BorderThickness="1" CornerRadius="18" HorizontalAlignment="Left" Height="80" Margin="53,191,0,0" VerticalAlignment="Top" Width="259" Background="#2A3340" RenderTransformOrigin="0.488,1.784">
-            <Button Content="Zaktualizuj wizyte" FontStyle="Italic" FontSize="20" Margin="24.2,9.2,24,9.4" FontWeight="Bold" Background="#91BBF2" Click="UpdateDoctor" />
+            <Button Content="Zaktualizuj wizyte" FontStyle="Italic" FontSize="20" Margin="24.2,9.2,24,9.4" FontWeight="Bold" Background="#91BBF2" Click="UpdateVisit" />
         </Border>
         <Border BorderBrush="Black" BorderThickness="1" CornerRadius="18" HorizontalAlignment="Left" Height="80" Margin="53,276,0,0" VerticalAlignment="Top" Width="259" Background="#2A3340" RenderTransformOrigin="0.488,1.784">
             <Button Content="Odśwież" FontStyle="Italic" FontSize="20" FontWeight="Bold" Margin="24.2,9.2,24,9.4" Background="#91BBF2" Click="RefreshVisits"/>

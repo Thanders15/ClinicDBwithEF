@@ -32,19 +32,25 @@ namespace Przychodnia
                 try
                 {
                     Wizyty newVisit = new Wizyty()
-                {
+                    {
                     Lekarz_ID = int.Parse(txtLekarzID.Text),
                     Pacjent_ID = int.Parse(txtPacjentId.Text),
                     DataWizyty = DateTime.Parse(txtData.Text),
                     NumerPokoju = int.Parse(txtNumerPokoju.Text),
-                };
-                db.Wizyty.Add(newVisit);
-                
-                    db.SaveChanges();
+                    };
+                    if (int.Parse(txtNumerPokoju.Text) < 0)
+                    {
+                        MessageBox.Show("Wartość pokoju jest niepoprawna");
+                    }
+                    else
+                    {
+                        db.Wizyty.Add(newVisit);
+                        db.SaveChanges();
+                    }
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Id pacjenta albo lekarza nie istnieje w bazie danych lub nie wybrałeś daty");
+                    MessageBox.Show("Id pacjenta albo lekarza nie istnieje w bazie danych lub podałeś nieprawidłową wartość");
                 }
                 LoadVisits();
             }
@@ -93,9 +99,24 @@ namespace Przychodnia
             System.Windows.Data.CollectionViewSource pacjenciViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("wizytyViewSource")));
             pacjenciViewSource.View.MoveCurrentToFirst();
         }
-        private void UpdateDoctor(object sender, RoutedEventArgs e)
+        private void UpdateVisit(object sender, RoutedEventArgs e)
         {
             PrzychodniaDBEntities db = new PrzychodniaDBEntities();
+            try
+            {
+                int Id = (wizytyDataGrid.SelectedItem as Wizyty).Id;
+                var swapVisit = db.Wizyty.Where(m => m.Id == Id).Single();
+                swapVisit.Lekarz_ID = int.Parse(txtLekarzID.Text);
+                swapVisit.Pacjent_ID = int.Parse(txtPacjentId.Text);
+                swapVisit.DataWizyty = DateTime.Parse(txtData.Text);
+                swapVisit.NumerPokoju = int.Parse(txtNumerPokoju.Text);
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Musisz wybrać wizytę lub podałeś nieprawidłowe wartości");
+            }
+            LoadVisits();
         }
     }
 }
