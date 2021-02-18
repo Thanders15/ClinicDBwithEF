@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Przychodnia"
         mc:Ignorable="d"
-        Title="LekarzeWindow" Height="400" Width="800" Background="#8B96D9" Loaded="Window_Loaded">
+        Title="LekarzeWindow" Height="400" Width="800" Background="#8B96D9" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <local:PrzychodniaDBDataSetVVV x:Key="przychodniaDBDataSetVVV"/>
         <CollectionViewSource x:Key="lekarzeViewSource" Source="{Binding Lekarze, Source={StaticResource przychodniaDBDataSetVVV}}"/>

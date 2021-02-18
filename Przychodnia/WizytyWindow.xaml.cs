@@ -23,7 +23,6 @@ namespace Przychodnia
         {
             InitializeComponent();
             LoadVisits();
-            PrzychodniaDBEntities db = new PrzychodniaDBEntities();
         }
         private void AddingVisit(object sender, RoutedEventArgs e)
         {

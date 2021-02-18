@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Przychodnia"
         mc:Ignorable="d"
-        Title="Menu Glowne" Height="400" Width="500" FontSize="13" Background="#8B96D9">
+        Title="Menu Glowne" Height="400" Width="500" FontSize="13" Background="#8B96D9" WindowStartupLocation="CenterScreen">
     <Grid>
         <Border BorderBrush="Black" BorderThickness="1" CornerRadius="18" HorizontalAlignment="Left" Height="80" Margin="121,21,0,0" VerticalAlignment="Top" Width="233" Background="#2A3340">
             <Button Content="Lekarze" FontStyle="Italic" FontSize="20" Margin="24.2,9.2,24,9.4" FontWeight="Bold" Background="#91BBF2" Click="buttonDoctors"/>

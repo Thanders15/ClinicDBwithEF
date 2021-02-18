@@ -24,7 +24,6 @@ namespace Przychodnia
         {
             InitializeComponent();
             LoadPrescriptions();
-            PrzychodniaDBEntities db = new PrzychodniaDBEntities();
         }
         private void AddingPrescription(object sender, RoutedEventArgs e)
         {

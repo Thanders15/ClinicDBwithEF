@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Przychodnia"
         mc:Ignorable="d"
-        Title="WizytyWindow" Height="400" Width="800" Loaded="Window_Loaded" Background="#8B96D9">
+        Title="WizytyWindow" Height="400" Width="800" Loaded="Window_Loaded" Background="#8B96D9" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <local:PrzychodniaDBDataSetVVV x:Key="przychodniaDBDataSetVVV"/>
         <CollectionViewSource x:Key="wizytyViewSource" Source="{Binding Wizyty, Source={StaticResource przychodniaDBDataSetVVV}}"/>

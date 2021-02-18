@@ -29,22 +29,29 @@ namespace Przychodnia
         {
             PrzychodniaDBEntities db = new PrzychodniaDBEntities();
             {
-                Pacjenci newPatient = new Pacjenci()
+                try
                 {
-                    Imie = txtName.Text,
-                    Nazwisko = txtSurname.Text,
-                    Pesel = Int64.Parse(txtPesel.Text),
-                    Adres = txtAdres.Text,
-                };
-                if(txtName.Text == "" || txtSurname.Text == "" || Int64.Parse(txtPesel.Text) < 1010100000 || txtAdres.Text == "")
-                {
-                    MessageBox.Show("Wartości nie mogą być puste lub są za małe");
+                    Pacjenci newPatient = new Pacjenci()
+                    {
+                        Imie = txtName.Text,
+                        Nazwisko = txtSurname.Text,
+                        Pesel = Int64.Parse(txtPesel.Text),
+                        Adres = txtAdres.Text,
+                    };
+                    if (txtName.Text == "" || txtSurname.Text == "" || Int64.Parse(txtPesel.Text) < 1010100000 || txtAdres.Text == "")
+                    {
+                        MessageBox.Show("Wartości nie mogą być puste lub są za małe");
+                    }
+                    else
+                    {
+                        db.Pacjenci.Add(newPatient);
+                        db.SaveChanges();
+                    }
                 }
-                else
+                catch (Exception)
                 {
-                    db.Pacjenci.Add(newPatient);
-                    db.SaveChanges();
-                }
+                    MessageBox.Show("Podałeś niepoprawne wartości");
+                }                
                 LoadPatients();
             }
         }

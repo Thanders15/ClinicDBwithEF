@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Przychodnia"
         mc:Ignorable="d"
-        Title="Menu Glowne" Height="380" Width="380" FontSize="13" Background="#8B96D9">
+        Title="Menu Glowne" Height="380" Width="380" FontSize="13" Background="#8B96D9" WindowStartupLocation="CenterScreen">
     <Border Background="#2e3137" CornerRadius="20" Margin="20">
         <StackPanel Margin="20">
             <Label Content="Panel logowania" Foreground="White" FontSize="25" HorizontalAlignment="Center"/>
